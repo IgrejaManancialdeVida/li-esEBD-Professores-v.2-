@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ESCHATON — Guia do Professor</title>
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest-professor.json">
 <link rel="apple-touch-icon" href="icon-professor-192.png">
 <link rel="icon" type="image/png" href="icon-professor-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -222,7 +222,7 @@ body{background:var(--verde-fundo);font-family:'EB Garamond',Georgia,serif;min-h
 <footer class="rodape">
     <p><strong id="rodape-vol">ESCHATON · VOL. II</strong> · Guia do Professor · EBD Jovens Adultos</p>
     <p style="margin-top:6px;">Estudos Escatológicos Temáticos · 13 Lições</p>
-    <a href="index-aluno.html" class="link-aluno" id="link-aluno">&#8594; Versão do Aluno</a>
+    <a href="https://igrejamanancialdevida.github.io/li-esEBD-Professores-v.2-/index.html" class="link-aluno" id="link-aluno">&#8594; Versão do Aluno</a>
 </footer>
 
 <script src="navegacao.js"></script>
@@ -253,7 +253,7 @@ const DADOS_LICOES = {
     2: {
         titulo: "A Palavra que Não Passará",
         sub: "Volume II · Estudos Escatológicos",
-        base: "https://igrejamanancialdevida.github.io/li-esebd-v.2-/",
+        base: "https://igrejamanancialdevida.github.io/li-esEBD-Professores-v.2-/",
         licoes: [
             { n:"01", ref:"Joel 2:1-11 · 2 Pedro 3:10", titulo:"O Dia do Senhor", sub:"O grande e terrível dia que os profetas anunciaram através dos séculos" },
             { n:"02", ref:"2 Ts 2:1-12 · 1 Tm 4:1-3", titulo:"A Apostasia dos Últimos Tempos", sub:"O abandono da fé e o homem do pecado como sinais do fim" },
@@ -353,12 +353,12 @@ function renderizarGrid(vol) {
 
 // ─── DETECTA VOLUME PELA URL ──────────────────────────────────────────
 function detectarVolumeInicial() {
-    const href = window.location.href;
-    if (href.includes('li-esebd-v.3') || href.includes('esebd-v.3')) return 3;
-    if (href.includes('li-esebd-v.2') || href.includes('esebd-v.2')) return 2;
-    // li-esebd sem sufixo = volume 1
-    if (href.includes('li-esebd/') || href.match(/li-esebd[^-]/)) return 1;
-    return 2; // padrão
+    const href = window.location.href.toLowerCase();
+    if (href.includes('v.3') || href.includes('v3')) return 3;
+    if (href.includes('v.2') || href.includes('v2')) return 2;
+    // li-esebd-professores sem sufixo de versão = volume 1
+    if (href.includes('professores') && !href.includes('v.2') && !href.includes('v.3')) return 1;
+    return 2; // padrão (este repositório é o Vol. II)
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────
