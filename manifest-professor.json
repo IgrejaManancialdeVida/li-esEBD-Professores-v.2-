@@ -2,7 +2,7 @@
   "name": "Eschaton Vol. II — Professor",
   "short_name": "Eschaton Prof.",
   "description": "Guia do Professor — A Palavra que Não Passará · 13 Lições · EBD Jovens Adultos",
-  "start_url": "./index-professor.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0a1a0d",
