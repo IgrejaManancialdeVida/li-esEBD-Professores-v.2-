@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESCHATON — Vol. II — Guia do Professor</title>
+<link rel="manifest" href="manifest-professor.json">
+<link rel="apple-touch-icon" href="icon-professor-192.png">
+<link rel="icon" type="image/png" href="icon-professor-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Eschaton II · Prof.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+    --verde-fundo:#0a1a0d;
+    --verde-medio:#122018;
+    --verde-acento:#1a6b35;
+    --verde-vivo:#27ae60;
+    --verde-claro:#52c27a;
+    --ouro:#c9a84c;
+    --ouro-claro:#e8d5a0;
+    --pergaminho:#d8f0df;
+    --cinza:#7a9a82;
+    --branco:#f0faf3;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--verde-fundo);font-family:'EB Garamond',Georgia,serif;min-height:100vh;overflow-x:hidden;}
+
+/* Barra de navegação injetada por navegacao-professor.js */
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:
+    radial-gradient(ellipse at 20% 40%,rgba(26,107,53,0.25) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 25%,rgba(201,168,76,0.08) 0%,transparent 45%),
+    radial-gradient(ellipse at 50% 85%,rgba(39,174,96,0.12) 0%,transparent 40%),
+    linear-gradient(180deg,#050f07 0%,#0a1a0d 50%,#050f07 100%);z-index:0;}
+.hero-textura{position:absolute;inset:0;z-index:1;opacity:0.035;background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(39,174,96,0.9) 28px,rgba(39,174,96,0.9) 29px),
+    repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(39,174,96,0.35) 40px,rgba(39,174,96,0.35) 41px);}
+.hero-content{position:relative;z-index:2;max-width:680px;}
+
+.prof-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(39,174,96,0.35);padding:5px 16px;margin-bottom:10px;animation:fadeUp 0.9s ease both;background:rgba(39,174,96,0.06);}
+.prof-badge-txt{font-family:'Oswald',sans-serif;font-size:8pt;color:var(--verde-claro);letter-spacing:2.5px;text-transform:uppercase;}
+.prof-badge-ico{font-size:9pt;color:var(--verde-vivo);}
+
+.vol-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(201,168,76,0.25);padding:6px 18px;margin-bottom:22px;animation:fadeUp 0.9s ease 0.1s both;}
+.vol-badge-num{font-family:'Cinzel',serif;font-size:9pt;color:var(--ouro);letter-spacing:3px;}
+.vol-badge-sep{width:1px;height:14px;background:rgba(201,168,76,0.4);}
+.vol-badge-txt{font-family:'Oswald',sans-serif;font-size:8pt;color:#6a8a72;letter-spacing:2px;text-transform:uppercase;}
+
+.hero-titulo{font-family:'Cinzel',serif;font-size:clamp(34pt,9vw,62pt);font-weight:900;color:#fff;letter-spacing:6px;text-transform:uppercase;line-height:1;animation:fadeUp 0.9s ease 0.2s both;}
+.hero-vol{font-family:'Oswald',sans-serif;font-size:10pt;color:var(--verde-vivo);letter-spacing:4px;text-transform:uppercase;margin-top:6px;animation:fadeUp 0.9s ease 0.3s both;}
+
+.hero-divisor{display:flex;align-items:center;gap:14px;margin:22px auto;width:300px;animation:fadeUp 0.9s ease 0.4s both;}
+.hero-divisor::before,.hero-divisor::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--verde-vivo),transparent);}
+.hero-divisor-ico{color:var(--verde-claro);font-size:12pt;}
+
+.hero-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:13.5pt;color:rgba(180,230,195,0.8);line-height:1.6;max-width:460px;margin:0 auto 30px;animation:fadeUp 0.9s ease 0.5s both;}
+.hero-ref{font-family:'Oswald',sans-serif;font-size:8pt;color:var(--cinza);letter-spacing:2px;text-transform:uppercase;animation:fadeUp 0.9s ease 0.6s both;}
+
+/* Aviso professor */
+.aviso-prof{display:inline-flex;align-items:center;gap:10px;background:rgba(39,174,96,0.08);border:1px solid rgba(39,174,96,0.25);border-left:3px solid var(--verde-vivo);padding:10px 18px;margin-top:24px;max-width:500px;animation:fadeUp 0.9s ease 0.7s both;}
+.aviso-prof-ico{font-size:14pt;color:var(--verde-claro);}
+.aviso-prof-txt{font-family:'Oswald',sans-serif;font-size:8pt;letter-spacing:1.5px;text-transform:uppercase;color:rgba(82,194,122,0.8);text-align:left;line-height:1.5;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* GRID */
+.licoes-section{padding:70px 24px;max-width:1080px;margin:0 auto;}
+.section-header{text-align:center;margin-bottom:48px;}
+.section-header h2{font-family:'Cinzel',serif;font-size:20pt;color:var(--verde-claro);letter-spacing:4px;text-transform:uppercase;}
+.section-header p{font-family:'EB Garamond',serif;font-style:italic;color:var(--cinza);font-size:12pt;margin-top:8px;}
+.section-divider{width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--verde-acento),transparent);margin:16px auto 0;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;}
+
+.card{background:rgba(18,32,24,0.7);border:1px solid rgba(39,174,96,0.12);border-radius:3px;overflow:hidden;text-decoration:none;display:block;transition:all 0.3s ease;position:relative;}
+.card:hover{border-color:rgba(39,174,96,0.4);transform:translateY(-4px);box-shadow:0 10px 36px rgba(0,0,0,0.5),0 0 20px rgba(39,174,96,0.06);}
+
+.card-topo{height:80px;position:relative;display:flex;align-items:flex-end;padding:12px;overflow:hidden;}
+.card-num{font-family:'Cinzel',serif;font-size:44pt;font-weight:900;color:rgba(255,255,255,0.05);position:absolute;top:-6px;right:8px;line-height:1;user-select:none;}
+.card-num-txt{font-family:'Oswald',sans-serif;font-size:8pt;letter-spacing:2px;color:var(--verde-claro);font-weight:600;text-transform:uppercase;position:relative;z-index:1;}
+.card-ref{font-family:'EB Garamond',serif;font-style:italic;font-size:8pt;color:rgba(82,194,122,0.5);position:relative;z-index:1;margin-top:2px;}
+
+.card-corpo{padding:14px 16px 16px;border-top:2px solid;}
+.card-titulo{font-family:'Cinzel',serif;font-size:12pt;color:#e8f5ec;line-height:1.2;margin-bottom:6px;}
+.card-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:9.5pt;color:var(--cinza);line-height:1.4;}
+.card-acoes{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid rgba(255,255,255,0.04);}
+.card-pags{font-family:'Oswald',sans-serif;font-size:7.5pt;color:#4a6a52;letter-spacing:1px;text-transform:uppercase;}
+.card-btn{font-family:'Oswald',sans-serif;font-size:7.5pt;letter-spacing:1.5px;text-transform:uppercase;color:var(--verde-claro);background:rgba(39,174,96,0.08);border:1px solid rgba(39,174,96,0.25);padding:4px 10px;border-radius:2px;transition:all 0.2s;}
+.card:hover .card-btn{background:var(--verde-vivo);color:#fff;}
+
+/* Topos das lições — tons verdes variados */
+.t01{background:linear-gradient(135deg,#091a0c,#122018);border-color:#1a6b35;}
+.t02{background:linear-gradient(135deg,#0a1a10,#162814);border-color:#1e7a3a;}
+.t03{background:linear-gradient(135deg,#0a1a14,#102818);border-color:#1a6b4a;}
+.t04{background:linear-gradient(135deg,#0a160a,#122012);border-color:#256b25;}
+.t05{background:linear-gradient(135deg,#0a1a0e,#101e14);border-color:#206035;}
+.t06{background:linear-gradient(135deg,#0c1a10,#162416);border-color:#257a35;}
+.t07{background:linear-gradient(135deg,#081a0c,#0e2212);border-color:#1a7030;}
+.t08{background:linear-gradient(135deg,#0a1a0a,#142014);border-color:#206020;}
+.t09{background:linear-gradient(135deg,#081810,#102018);border-color:#1a6050;}
+.t10{background:linear-gradient(135deg,#0a1a0c,#102018);border-color:#206840;}
+.t11{background:linear-gradient(135deg,#0c1a0a,#162010);border-color:#2a7020;}
+.t12{background:linear-gradient(135deg,#081a0e,#0e2016);border-color:#1a7040;}
+.t13{background:linear-gradient(135deg,#0a180c,#142018);border-color:#c9a84c;}
+
+.cb01{border-color:#1a6b35;}.cb02{border-color:#1e7a3a;}.cb03{border-color:#1a6b4a;}
+.cb04{border-color:#256b25;}.cb05{border-color:#206035;}.cb06{border-color:#257a35;}
+.cb07{border-color:#1a7030;}.cb08{border-color:#206020;}.cb09{border-color:#1a6050;}
+.cb10{border-color:#206840;}.cb11{border-color:#2a7020;}.cb12{border-color:#1a7040;}
+.cb13{border-color:#c9a84c;}
+
+/* RODAPÉ */
+.rodape{text-align:center;padding:36px 24px 52px;border-top:1px solid rgba(39,174,96,0.1);}
+.rodape p{font-family:'EB Garamond',serif;font-style:italic;font-size:10pt;color:#3a5a42;}
+.rodape strong{font-family:'Cinzel',serif;color:var(--verde-claro);font-style:normal;letter-spacing:2px;}
+.link-aluno{display:inline-block;margin-top:16px;font-family:'Oswald',sans-serif;font-size:8pt;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);border:1px solid rgba(39,174,96,0.2);padding:7px 18px;border-radius:2px;text-decoration:none;transition:all 0.2s;}
+.link-aluno:hover{color:var(--verde-claro);border-color:rgba(39,174,96,0.5);}
+
+/* MOBILE */
+@media screen and (max-width:768px){
+    .nav-marca{display:none;}
+    .nav-vol{padding:0 12px;font-size:7.5pt;letter-spacing:1px;}
+    .nav-badge-prof{padding:0 10px;font-size:6.5pt;}
+    .hero{min-height:100svh;padding:72px 16px 48px;}
+    .hero-content{max-width:100%;}
+    .vol-badge{padding:5px 12px;margin-bottom:18px;}
+    .hero-titulo{font-size:clamp(26pt,9vw,42pt);letter-spacing:3px;}
+    .hero-sub{font-size:12pt;max-width:100%;margin-bottom:20px;}
+    .aviso-prof{max-width:100%;}
+    .licoes-section{padding:48px 12px;}
+    .section-header h2{font-size:16pt;letter-spacing:2px;}
+    .grid{grid-template-columns:1fr;gap:14px;}
+    .card-topo{height:76px;}
+    .card-num{font-size:38pt;}
+    .rodape{padding:28px 16px 40px;}
+}
+@media screen and (max-width:480px){
+    .nav-vol{padding:0 8px;font-size:7pt;}
+    .nav-badge-prof{display:none;}
+    .hero{padding:64px 14px 40px;}
+    .licoes-section{padding:36px 10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-textura"></div>
+    <div class="hero-content">
+
+        <div class="prof-badge">
+            <span class="prof-badge-ico">✦</span>
+            <span class="prof-badge-txt">Guia do Professor</span>
+        </div>
+
+        <div class="vol-badge">
+            <span class="vol-badge-num">VOL. II</span>
+            <span class="vol-badge-sep"></span>
+            <span class="vol-badge-txt">Estudos Escatológicos</span>
+        </div>
+
+        <h1 class="hero-titulo">ESCHATON</h1>
+        <div class="hero-vol">A Palavra que Não Passará</div>
+
+        <div class="hero-divisor"><span class="hero-divisor-ico">&#10022;</span></div>
+
+        <p class="hero-sub">"O céu e a terra passarão, mas as minhas palavras não passarão."</p>
+        <div class="hero-ref">Mateus 24:35 &middot; Escola Bíblica Dominical &middot; Jovens Adultos</div>
+
+        <div class="aviso-prof">
+            <span class="aviso-prof-ico">&#128196;</span>
+            <span class="aviso-prof-txt">Material exclusivo para preparação e condução das aulas &middot; EBD Jovens Adultos</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- GRID DAS LIÇÕES -->
+<section class="licoes-section">
+    <div class="section-header">
+        <h2>Sumário das Lições</h2>
+        <p>Temas escatológicos extraídos das passagens-chave das Escrituras</p>
+        <div class="section-divider"></div>
+    </div>
+    <div class="grid">
+
+        <a href="licao-01.html" class="card">
+            <div class="card-topo t01">
+                <div class="card-num">01</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 01</div>
+                    <div class="card-ref">Joel 2:1-11 &middot; 2 Pedro 3:10</div>
+                </div>
+            </div>
+            <div class="card-corpo cb01">
+                <div class="card-titulo">O Dia do Senhor</div>
+                <div class="card-sub">O grande e terrível dia que os profetas anunciaram através dos séculos</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-02.html" class="card">
+            <div class="card-topo t02">
+                <div class="card-num">02</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 02</div>
+                    <div class="card-ref">2 Ts 2:1-12 &middot; 1 Tm 4:1-3</div>
+                </div>
+            </div>
+            <div class="card-corpo cb02">
+                <div class="card-titulo">A Apostasia dos Últimos Tempos</div>
+                <div class="card-sub">O abandono da fé e o homem do pecado como sinais do fim</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-03.html" class="card">
+            <div class="card-topo t03">
+                <div class="card-num">03</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 03</div>
+                    <div class="card-ref">Apocalipse 7:1-8 &middot; 14:1-5</div>
+                </div>
+            </div>
+            <div class="card-corpo cb03">
+                <div class="card-titulo">Os 144.000</div>
+                <div class="card-sub">Quem são os selados de Deus e o que sua presença revela sobre o plano divino</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-04.html" class="card">
+            <div class="card-topo t04">
+                <div class="card-num">04</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 04</div>
+                    <div class="card-ref">Apocalipse 8-9</div>
+                </div>
+            </div>
+            <div class="card-corpo cb04">
+                <div class="card-titulo">As Sete Trombetas</div>
+                <div class="card-sub">Os julgamentos progressivos que anunciam o fim da era presente</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-05.html" class="card">
+            <div class="card-topo t05">
+                <div class="card-num">05</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 05</div>
+                    <div class="card-ref">Apocalipse 11:1-14</div>
+                </div>
+            </div>
+            <div class="card-corpo cb05">
+                <div class="card-titulo">As Duas Testemunhas</div>
+                <div class="card-sub">A missão profética da Igreja no período de tribulação</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-06.html" class="card">
+            <div class="card-topo t06">
+                <div class="card-num">06</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 06</div>
+                    <div class="card-ref">Apocalipse 12-13</div>
+                </div>
+            </div>
+            <div class="card-corpo cb06">
+                <div class="card-titulo">A Mulher, o Dragão e a Besta</div>
+                <div class="card-sub">O grande conflito cósmico entre o povo de Deus e as forças do mal</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-07.html" class="card">
+            <div class="card-topo t07">
+                <div class="card-num">07</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 07</div>
+                    <div class="card-ref">Apocalipse 15-16</div>
+                </div>
+            </div>
+            <div class="card-corpo cb07">
+                <div class="card-titulo">As Sete Taças da Ira</div>
+                <div class="card-sub">O derramamento final da ira de Deus sobre a humanidade rebelde</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-08.html" class="card">
+            <div class="card-topo t08">
+                <div class="card-num">08</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 08</div>
+                    <div class="card-ref">Apocalipse 17-18</div>
+                </div>
+            </div>
+            <div class="card-corpo cb08">
+                <div class="card-titulo">A Queda da Babilônia</div>
+                <div class="card-sub">O julgamento do sistema mundial de corrupção, idolatria e opressão</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-09.html" class="card">
+            <div class="card-topo t09">
+                <div class="card-num">09</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 09</div>
+                    <div class="card-ref">Apocalipse 19:1-10</div>
+                </div>
+            </div>
+            <div class="card-corpo cb09">
+                <div class="card-titulo">A Ceia das Bodas do Cordeiro</div>
+                <div class="card-sub">O banquete eterno entre Cristo e sua Igreja na consumação da história</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-10.html" class="card">
+            <div class="card-topo t10">
+                <div class="card-num">10</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 10</div>
+                    <div class="card-ref">Ap 19:11-21 &middot; Zacarias 14</div>
+                </div>
+            </div>
+            <div class="card-corpo cb10">
+                <div class="card-titulo">A Batalha Final</div>
+                <div class="card-sub">O Rei dos reis em sua vinda gloriosa para destruir os inimigos de Deus</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-11.html" class="card">
+            <div class="card-topo t11">
+                <div class="card-num">11</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 11</div>
+                    <div class="card-ref">Daniel 2, 7 e 12</div>
+                </div>
+            </div>
+            <div class="card-corpo cb11">
+                <div class="card-titulo">O Livro de Daniel e o Fim</div>
+                <div class="card-sub">As grandes visões proféticas de Daniel e sua estrutura escatológica</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-12.html" class="card">
+            <div class="card-topo t12">
+                <div class="card-num">12</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 12</div>
+                    <div class="card-ref">Jr 31:31-34 &middot; Ez 36 &middot; Rm 11</div>
+                </div>
+            </div>
+            <div class="card-corpo cb12">
+                <div class="card-titulo">A Nova Aliança e a Esperança de Israel</div>
+                <div class="card-sub">As promessas pactais que sustentam a esperança do povo de Deus</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+        <a href="licao-13.html" class="card">
+            <div class="card-topo t13">
+                <div class="card-num">13</div>
+                <div style="position:relative;z-index:1;">
+                    <div class="card-num-txt">Lição 13 · Final</div>
+                    <div class="card-ref">1 Co 16:22 &middot; Apocalipse 22:17-21</div>
+                </div>
+            </div>
+            <div class="card-corpo cb13">
+                <div class="card-titulo">Maranata — A Igreja que Espera</div>
+                <div class="card-sub">A oração mais antiga da Igreja e a postura de quem vive na expectativa do Senhor</div>
+            </div>
+            <div class="card-acoes"><span class="card-pags">7 páginas</span><span class="card-btn">Abrir &#8594;</span></div>
+        </a>
+
+    </div>
+</section>
+
+<footer class="rodape">
+    <p><strong>ESCHATON &middot; VOL. II</strong> &middot; A Palavra que Não Passará &middot; Guia do Professor</p>
+    <p style="margin-top:6px;">Estudos Escatológicos Temáticos &middot; Jovens Adultos &middot; 13 Lições</p>
+    <a href="index.html" class="link-aluno">&#8594; Versão do Aluno</a>
+</footer>
+
+<script src="navegacao-professor.js"></script>
+</body>
+</html>
